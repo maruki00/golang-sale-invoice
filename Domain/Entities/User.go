@@ -12,5 +12,5 @@ type User struct {
 	Password        string    `json:password`
 	RememberToken   string    `json:remember_token`
 	CreatedAt       time.Time `json:created_at`
-	Updated_At      time.Time `json:updated_at`
+	UpdatedAt       time.Time `json:updated_at`
 }
