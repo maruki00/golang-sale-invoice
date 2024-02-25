@@ -6,14 +6,14 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	router := mux.NewRouter()
-	routes.RegisterCategoryRouter(router)
+	route := gin.Default()
+	routes.RegisterCategoryRouter(route)
 
-	http.Handle("/", router)
+	http.Handle("/", route)
 	fmt.Println("Server Started On http://127.0.0.1:3000")
 	log.Fatal(http.ListenAndServe(":3000", nil))
 }
