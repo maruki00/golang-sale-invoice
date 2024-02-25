@@ -10,15 +10,15 @@ type ProductFactory struct {
 
 func (pf *ProductFactory) create(attributes map[string]interface{}) *models.Product {
 	return &models.Product{
-		Id:           attributes["Id"].(int),
-		Name:         attributes["Name"].(string),
-		SerialNumber: attributes["SerialNumber"].(int),
-		Model:        attributes["Model"].(string),
-		CategoryId:   attributes["CategoryId"].(int),
-		SalesPrice:   attributes["SalesPrice"].(float32),
-		UnitId:       attributes["UnitId"].(int),
-		Image:        attributes["Image"].(string),
-		TaxId:        attributes["TaxId"].(int),
+		Id:           attributes["id"].(int),
+		Name:         attributes["name"].(string),
+		SerialNumber: attributes["serial_number"].(int),
+		Model:        attributes["model"].(string),
+		CategoryId:   attributes["category_id"].(int),
+		SalesPrice:   attributes["sales_price"].(float32),
+		UnitId:       attributes["unit_id"].(int),
+		Image:        attributes["image"].(string),
+		TaxId:        attributes["tax_id"].(int),
 		CreatedAt:    time.Now(),
 		UpdatedAt:    time.Now(),
 	}

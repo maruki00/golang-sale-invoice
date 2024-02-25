@@ -2,7 +2,7 @@ package models
 
 import "time"
 
-type Product_supplier struct {
+type ProductSupplier struct {
 	Id         int       `json: id`
 	ProductId  int       `json: product_id`
 	SupplierId int       `json: supplier_id`

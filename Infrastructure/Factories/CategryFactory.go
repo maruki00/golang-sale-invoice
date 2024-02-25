@@ -10,10 +10,10 @@ type CategoryFactory struct {
 
 func (pf *CategoryFactory) create(attributes map[string]interface{}) *models.Category {
 	return &models.Category{
-		Id:        attributes["Id"].(int),
-		Name:      attributes["Name"].(string),
-		Slug:      attributes["Slug"].(string),
-		Status:    attributes["Status"].(string),
+		Id:        attributes["id"].(int),
+		Name:      attributes["name"].(string),
+		Slug:      attributes["slug"].(string),
+		Status:    attributes["status"].(string),
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	}
