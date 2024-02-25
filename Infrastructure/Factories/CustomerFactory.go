@@ -7,7 +7,7 @@ import (
 
 type CustomerFactory struct{}
 
-func create(attributes map[string]interface{}) *models.Customer {
+func (pf *CustomerFactory) create(attributes map[string]interface{}) *models.Customer {
 	return &models.Customer{
 		Id:             attributes["id"].(int),
 		Name:           attributes["name"].(string),

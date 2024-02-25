@@ -7,7 +7,7 @@ import (
 
 type InvoiceFactory struct{}
 
-func create(attributes map[string]interface{}) *models.Invoice {
+func (pf *InvoiceFactory) create(attributes map[string]interface{}) *models.Invoice {
 	return &models.Invoice{
 		Id:         attributes["id"].(int),
 		CustomerId: attributes["custumer_id"].(int),
