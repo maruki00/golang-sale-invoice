@@ -27,32 +27,21 @@ func (cp CategoryRepository) FindAll() []models.Category {
 	return categories
 }
 
-func (cp CategoryRepository) FindById(id int) models.Category {
+func (cp CategoryRepository) FindById(id int) *models.Category {
 	var category models.Category
 	cp.db.Where("Id = ?", id).Find(&category)
-	return category
+	return &category
 }
 
-// func (b *Book) CreateBook() *Book {
-// 	// db.NewRecord(b)
-// 	db.Create(&b)
-// 	return b
-// }
+func (cp CategoryRepository) DeleteCategory(id int) *models.Category {
+	var category models.Category
+	cp.db.Where("Id = ?", id).Delete(&category)
+	return &category
+}
 
-// func GetAllBooks() []Book {
-// 	var books []Book
-// 	db.Find(&books)
-// 	return books
-// }
-
-// func GetBookByID(Id int64) (*Book, *gorm.DB) {
-// 	var getBook Book
-// 	d := db.Where("ID/?", Id).Find(&getBook)
-// 	return &getBook, d
-// }
-
-// func DeleteBook(Id int64) Book {
-// 	var deletedBook Book
-// 	db.Where("ID=?", Id).Delete(&deletedBook)
-// 	return deletedBook
-// }
+func (cp CategoryRepository) UpdateCategory(id int, attributes map[string]interface{}) *models.Category {
+	var category models.Category
+	cp.db.Where("Id  = ? ", id).Find(&category)
+	cp.db.Model(&category).Updates(attributes)
+	return &category
+}
