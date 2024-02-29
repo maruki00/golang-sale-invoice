@@ -18,9 +18,9 @@ func (cp *CategoryRepository) New() *CategoryRepository {
 	return cp
 }
 
-func (cp CategoryRepository) CreateCategory(category models.Category) *models.Category {
-	cp.db.Create(&category)
-	return &category
+func (cp CategoryRepository) CreateCategory(category *models.Category) *models.Category {
+	cp.db.Create(category)
+	return category
 }
 
 func (cp CategoryRepository) FindAll() []models.Category {

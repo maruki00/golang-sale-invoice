@@ -3,16 +3,24 @@ package services
 import (
 	contracts "saleinvoice/Domain/Contracts"
 	models "saleinvoice/Domain/Entities"
-	mysqlrepository "saleinvoice/Infrastructure/Repositories/MysqlRepository"
+	factories "saleinvoice/Infrastructure/Factories"
 )
 
 type CategoryService struct {
-	repository mysqlrepository.CategoryRepository
+	repository contracts.ICategoryRepository
 }
 
-func NewCategoryService(repository contracts.ICategoryRepository)
-func (service CategoryService) getAll() []models.Category {
-	var categories []models.Category
-	service.repository.FindAll(&categories)
-	return categories
+func NewCategoryService(repo contracts.ICategoryRepository) *CategoryService {
+	return &CategoryService{
+		repository: repo,
+	}
+}
+
+func (service *CategoryService) Index() []models.Category {
+	castegories := service.repository.FindAll()
+	return castegories
+}
+
+func (service *CategoryService) Store(attributes map[string]interface{}) models.Category {
+	category := factories.CategoryFactory(attributes)
 }
