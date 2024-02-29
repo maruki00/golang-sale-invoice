@@ -1,4 +1,4 @@
-package factories
+package mysqlrepository
 
 import (
 	models "delivery/golang_salesInvoice/Domain/Entities"
@@ -12,7 +12,9 @@ type CategoryRepository struct {
 }
 
 func (cp *CategoryRepository) New() *CategoryRepository {
-	cp.db = database.Connect()
+	if cp.db == nil {
+		cp.db = database.Connect()
+	}
 	return cp
 }
 
