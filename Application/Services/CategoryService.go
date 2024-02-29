@@ -23,4 +23,5 @@ func (service *CategoryService) Index() []models.Category {
 
 func (service *CategoryService) Store(attributes map[string]interface{}) models.Category {
 	category := factories.CategoryFactory(attributes)
+	service.repository.CreateCategory(category)
 }
