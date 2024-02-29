@@ -1,4 +1,5 @@
-package factories
+package repositories
 
 type ICategoryRepository interface {
+	sleep()
 }

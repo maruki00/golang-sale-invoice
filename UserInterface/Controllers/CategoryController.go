@@ -1,18 +1,18 @@
 package controllers
 
-import models "delivery/golang_salesInvoice/Domain/Entities"
+import (
+	models "saleinvoice/Domain/Entities"
+	mysqlrepository "saleinvoice/Infrastructure/Repositories/MysqlRepository"
+)
 
 type CategoryController struct {
-	CategoryRepository repository
+	repository mysqlrepository.CategoryRepository
 }
 
 func (c *CategoryController) Index() {
-	CategoryRepository.CategoryController
+
 }
 
+func (con CategoryController) index() []models.Category {
 
-
-
-func (con CategoryController)index()[]models.Category{
-	var 
 }

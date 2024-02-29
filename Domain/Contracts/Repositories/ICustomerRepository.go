@@ -1,3 +1,3 @@
-package factories
+package repositories
 
 type ICustomerRepository interface{}

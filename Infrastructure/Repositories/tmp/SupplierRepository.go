@@ -1,3 +1,3 @@
-package factories
+package tmp
 
 type SupplierRepository struct{}
