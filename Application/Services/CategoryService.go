@@ -1,16 +1,18 @@
 package services
 
 import (
-	models "delivery/golang_salesInvoice/Domain/Entities"
-	mysqlrepository "delivery/golang_salesInvoice/Infrastructure/Repositories/MysqlRepository"
+	contracts "saleinvoice/Domain/Contracts"
+	models "saleinvoice/Domain/Entities"
+	mysqlrepository "saleinvoice/Infrastructure/Repositories/MysqlRepository"
 )
 
 type CategoryService struct {
 	repository mysqlrepository.CategoryRepository
 }
 
-func NewCategoryService(repository repos)
+func NewCategoryService(repository contracts.ICategoryRepository)
 func (service CategoryService) getAll() []models.Category {
 	var categories []models.Category
-
+	service.repository.FindAll(&categories)
+	return categories
 }
