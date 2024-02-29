@@ -9,6 +9,7 @@ type CategoryService struct {
 	repository mysqlrepository.CategoryRepository
 }
 
+func NewCategoryService(repository)
 func (service CategoryService) getAll() []models.Category {
 	var categories []models.Category
 
