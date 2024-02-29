@@ -1,3 +1,3 @@
-package repositories
+package contracts
 
 type ICustomerRepository interface{}

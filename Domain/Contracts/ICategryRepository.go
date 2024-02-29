@@ -1,5 +1,4 @@
-package repositories
+package contracts
 
 type ICategoryRepository interface {
-	sleep()
 }

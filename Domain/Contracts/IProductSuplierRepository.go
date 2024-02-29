@@ -1,3 +1,3 @@
-package factories
+package contracts
 
 type IProductSuplierRepository interface{}
