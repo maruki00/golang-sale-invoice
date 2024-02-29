@@ -1,8 +1,8 @@
 package mysqlrepository
 
 import (
-	models "delivery/golang_salesInvoice/Domain/Entities"
-	"delivery/golang_salesInvoice/Infrastructure/database"
+	models "saleinvoice/Domain/Entities"
+	"saleinvoice/Infrastructure/database"
 
 	"gorm.io/gorm"
 )
