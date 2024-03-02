@@ -1,12 +1,10 @@
 package mysqlrepository
 
 import (
-	models "saleinvoice/Domain/Entities"
-	"saleinvoice/Infrastructure/database"
+	entities "saleinvoice/App/Domain/Entities"
+	"saleinvoice/App/Infrastructure/database"
 
 	"errors"
-
-	"gorm.io/gorm"
 )
 
 var (
@@ -16,58 +14,57 @@ var (
 )
 
 type CategoryRepository struct {
-	db *gorm.DB
+	dbHandler *database.DBHandler
 }
 
 func (cp *CategoryRepository) New() *CategoryRepository {
-	if cp.db == nil {
-		cp.db = database.Connect()
+	return &CategoryRepository{
+		dbHandler: database.NewDB(),
 	}
-	return cp
 }
 
-func (cp CategoryRepository) CreateCategory(category *models.Category) (*models.Category, error) {
-	err := cp.db.Create(category)
+func (cp CategoryRepository) CreateCategory(category *entities.Category) (*entities.Category, error) {
+	err := cp.dbHandler.DB.Create(category)
 	if err != nil {
 		return nil, errStore
 	}
 	return category, nil
 }
 
-func (cp CategoryRepository) FindAll() ([]models.Category, error) {
-	var categories []models.Category
-	err := cp.db.Find(&categories)
+func (cp CategoryRepository) FindAll() ([]entities.Category, error) {
+	var categories []entities.Category
+	err := cp.dbHandler.DB.Find(&categories)
 	if err != nil {
 		return nil, errFind
 	}
 	return categories, nil
 }
 
-func (cp CategoryRepository) FindById(id int) (*models.Category, error) {
-	var category models.Category
-	err := cp.db.Where("Id = ?", id).Find(&category)
+func (cp CategoryRepository) FindById(id int) (*entities.Category, error) {
+	var category entities.Category
+	err := cp.dbHandler.DB.Where("Id = ?", id).Find(&category)
 	if err != nil {
 		return nil, errFind
 	}
 	return &category, nil
 }
 
-func (cp CategoryRepository) DeleteCategory(id int) (*models.Category, error) {
-	var category models.Category
-	err := cp.db.Where("Id = ?", id).Delete(&category)
+func (cp CategoryRepository) DeleteCategory(id int) (*entities.Category, error) {
+	var category entities.Category
+	err := cp.dbHandler.DB.Where("Id = ?", id).Delete(&category)
 	if err != nil {
 		return nil, errFind
 	}
 	return &category, nil
 }
 
-func (cp CategoryRepository) UpdateCategory(id int, attributes map[string]interface{}) (*models.Category, error) {
-	var category models.Category
-	err := cp.db.Where("Id  = ? ", id).Find(&category)
+func (cp CategoryRepository) UpdateCategory(id int, attributes map[string]interface{}) (*entities.Category, error) {
+	var category entities.Category
+	err := cp.dbHandler.DB.Where("Id  = ? ", id).Find(&category)
 	if err != nil {
 		return nil, errFind
 	}
-	err = cp.db.Model(&category).Updates(attributes)
+	err = cp.dbHandler.DB.Model(&category).Updates(attributes)
 	if err != nil {
 		return nil, errUpdate
 	}
