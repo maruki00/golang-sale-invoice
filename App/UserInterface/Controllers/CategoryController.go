@@ -1,18 +1,27 @@
 package controllers
 
 import (
-	models "saleinvoice/Domain/Entities"
-	mysqlrepository "saleinvoice/Infrastructure/Repositories/MysqlRepository"
+	interactors "saleinvoice/App/Application/Interactors"
+
+	"github.com/gin-gonic/gin"
 )
 
 type CategoryController struct {
-	repository mysqlrepository.CategoryRepository
+	interactor interactors.CategoryInteractor
 }
 
-func (c *CategoryController) Index() {
-
+func NewCategoryController(interactor interactors.CategoryInteractor) *CategoryController {
+	return &CategoryController{
+		interactor: interactor,
+	}
 }
 
-func (con CategoryController) index() []models.Category {
+func (c *CategoryController) Index(ctx *gin.Context) {
+
+	category := c.interactor.Index()
+	ctx.JSON(200, category)
+}
+
+func (controller *CategoryController) Store(ctx *gin.Context) {
 
 }

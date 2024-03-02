@@ -2,7 +2,6 @@ package interactors
 
 import (
 	"log"
-	contracts "saleinvoice/App/Domain/Contracts"
 	entities "saleinvoice/App/Domain/Entities"
 	factories "saleinvoice/App/Infrastructure/Factories"
 	mysqlrepository "saleinvoice/App/Infrastructure/Repositories/MysqlRepository"
@@ -12,16 +11,16 @@ type CategoryInteractor struct {
 	repository *mysqlrepository.CategoryRepository
 }
 
-func (ci *CategoryInteractor) NewCatergoryInteractor(repository *contracts.ICategoryRepository) *CategoryInteractor {
+func NewCatergoryInteractor(repository *mysqlrepository.CategoryRepository) *CategoryInteractor {
 	return &CategoryInteractor{
-		repository: ci.repository,
+		repository: repository,
 	}
 }
 
 func (interactor *CategoryInteractor) Index() []entities.Category {
 	categoories, err := interactor.repository.FindAll()
 	if err != nil {
-		return nil
+		log.Fatal(err.Error())
 	}
 	return categoories
 }

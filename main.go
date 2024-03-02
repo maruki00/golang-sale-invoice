@@ -1,10 +1,10 @@
 package main
 
 import (
-	routes "delivery/golang_salesInvoice/UserInterface/Routes"
 	"fmt"
 	"log"
 	"net/http"
+	routes "saleinvoice/App/UserInterface/Routes"
 
 	"github.com/gin-gonic/gin"
 )

@@ -33,8 +33,8 @@ func (cp CategoryRepository) CreateCategory(category *entities.Category) (*entit
 
 func (cp CategoryRepository) FindAll() ([]entities.Category, error) {
 	var categories []entities.Category
-	err := cp.dbHandler.DB.Find(&categories)
-	if err != nil {
+	infected := cp.dbHandler.DB.Find(&categories)
+	if infected.Error != nil {
 		return nil, errFind
 	}
 	return categories, nil
