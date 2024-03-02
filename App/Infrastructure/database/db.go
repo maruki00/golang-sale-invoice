@@ -31,24 +31,3 @@ func NewDB() *DBHandler {
 		DB: connect(),
 	}
 }
-
-// func (dbhandler *DBHandler) Create(object interface{}) {
-// 	dbhandler.db.Create(object)
-// }
-
-// func (dbhandler *DBHandler) Update(object interface{}) {
-// 	dbhandler.db.Save(object)
-// }
-
-// func (dbhandler *DBHandler) Delete(object interface{}) {
-// 	dbhandler.db.Delete(object)
-// }
-
-// func (dbhandler *DBHandler) Find(object interface{}){
-// 	dbhandler.db.Find(object)
-// }
-
-// func (dbhandler *DBHandler) Where(object interface{}) *gorm.DB{
-// 	dbhandler.db.
-// 	return dbhandler.db.Where(object)
-// }

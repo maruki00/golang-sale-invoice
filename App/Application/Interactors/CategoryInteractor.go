@@ -1,27 +1,49 @@
 package interactors
 
 import (
+	"log"
 	contracts "saleinvoice/App/Domain/Contracts"
 	entities "saleinvoice/App/Domain/Entities"
 	factories "saleinvoice/App/Infrastructure/Factories"
+	mysqlrepository "saleinvoice/App/Infrastructure/Repositories/MysqlRepository"
 )
 
-type CategoryService struct {
-	repository contracts.ICategoryRepository
+type CategoryInteractor struct {
+	repository *mysqlrepository.CategoryRepository
 }
 
-func NewCategoryService(repo contracts.ICategoryRepository) *CategoryService {
-	return &CategoryService{
-		repository: repo,
+func (ci *CategoryInteractor) NewCatergoryInteractor(repository *contracts.ICategoryRepository) *CategoryInteractor {
+	return &CategoryInteractor{
+		repository: ci.repository,
 	}
 }
 
-func (service *CategoryService) Index() []entities.Category {
-	castegories := service.repository.FindAll()
-	return castegories
+func (interactor *CategoryInteractor) Index() []entities.Category {
+	categoories, err := interactor.repository.FindAll()
+	if err != nil {
+		return nil
+	}
+	return categoories
 }
 
-func (service *CategoryService) Store(attributes map[string]interface{}) models.Category {
+func (service *CategoryInteractor) Store(attributes map[string]interface{}) entities.Category {
 	category := factories.CategoryFactory(attributes)
 	service.repository.CreateCategory(category)
+	return *category
+}
+
+func (interactor CategoryInteractor) GetByID(id int) *entities.Category {
+	category, err := interactor.repository.FindById(id)
+	if err != nil {
+		log.Fatal("Category not found")
+	}
+	return category
+}
+
+func (interactor CategoryInteractor) Delete(id int) *entities.Category {
+	category, err := interactor.repository.DeleteCategory(id)
+	if err != nil {
+		log.Fatal("Category not found")
+	}
+	return category
 }

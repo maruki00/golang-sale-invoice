@@ -17,9 +17,9 @@ type CategoryRepository struct {
 	dbHandler *database.DBHandler
 }
 
-func (cp *CategoryRepository) New() *CategoryRepository {
+func NewCategoryRepository(dbHandler *database.DBHandler) *CategoryRepository {
 	return &CategoryRepository{
-		dbHandler: database.NewDB(),
+		dbHandler: dbHandler,
 	}
 }
 

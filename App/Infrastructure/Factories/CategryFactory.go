@@ -1,12 +1,12 @@
 package factories
 
 import (
-	models "saleinvoice/Domain/Entities"
+	entities "saleinvoice/App/Domain/Entities"
 	"time"
 )
 
-func CategoryFactory(attributes map[string]interface{}) *models.Category {
-	return &models.Category{
+func CategoryFactory(attributes map[string]interface{}) *entities.Category {
+	return &entities.Category{
 		Id:        attributes["id"].(int),
 		Name:      attributes["name"].(string),
 		Slug:      attributes["slug"].(string),

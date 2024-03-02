@@ -1,14 +1,14 @@
 package factories
 
 import (
-	models "delivery/golang_salesInvoice/Domain/Entities"
+	entities "saleinvoice/App/Domain/Entities"
 	"time"
 )
 
 type SaleFactory struct{}
 
-func (pf *SaleFactory) create(attributes map[string]interface{}) *models.Sale {
-	return &models.Sale{
+func (pf *SaleFactory) create(attributes map[string]interface{}) *entities.Sale {
+	return &entities.Sale{
 		Id:        attributes["id"].(int),
 		InvoiceId: attributes["invoice_id"].(int),
 		ProductId: attributes["product_id"].(int),
