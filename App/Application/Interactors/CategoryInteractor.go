@@ -1,7 +1,9 @@
 package interactors
 
 import (
+	"fmt"
 	"log"
+	"net/http"
 	entities "saleinvoice/App/Domain/Entities"
 	factories "saleinvoice/App/Infrastructure/Factories"
 	mysqlrepository "saleinvoice/App/Infrastructure/Repositories/MysqlRepository"
@@ -25,10 +27,12 @@ func (interactor *CategoryInteractor) Index() []entities.Category {
 	return categoories
 }
 
-func (service *CategoryInteractor) Store(attributes map[string]interface{}) entities.Category {
-	category := factories.CategoryFactory(attributes)
+func (service *CategoryInteractor) Store(request *http.Request) *entities.Category {
+	fmt.Println("iNTERCATOR BODY: ", request.Body)
+	category := factories.CategoryFactory(request)
+	fmt.Println("interasctor: ", category)
 	service.repository.CreateCategory(category)
-	return *category
+	return category
 }
 
 func (interactor CategoryInteractor) GetByID(id int) *entities.Category {

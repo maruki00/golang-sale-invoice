@@ -18,14 +18,12 @@ func NewCategoryController(interactor interactors.CategoryInteractor) *CategoryC
 }
 
 func (c *CategoryController) Index(ctx *gin.Context) {
-
 	category := c.interactor.Index()
 	ctx.JSON(200, category)
 }
 
 func (controller *CategoryController) Store(ctx *gin.Context) {
-	var attributes map[string]any
-	helpers.RequestToMap(ctx.Request, &attributes)
-	ctx.JSON(200, attributes)
+	resp := controller.interactor.Store(ctx.Request)
+	helpers.Success(ctx, resp, 200)
 	// helpers.category := factories.CategoryFactory(ctx.Request.Body)
 }
