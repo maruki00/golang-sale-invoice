@@ -13,3 +13,11 @@ func ParseBody(request *http.Request, x interface{}) {
 		}
 	}
 }
+
+func RequestToMap(request *http.Request, x *map[string]interface{}) {
+	if body, err := io.ReadAll(request.Body); err == nil {
+		if err := json.Unmarshal([]byte(body), x); err != nil {
+			return
+		}
+	}
+}

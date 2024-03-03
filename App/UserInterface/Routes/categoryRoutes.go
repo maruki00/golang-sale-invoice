@@ -11,6 +11,7 @@ import (
 
 var RegisterCategoryRouter = func(router *gin.Engine) {
 	conteroller := controllers.NewCategoryController(*interactors.NewCatergoryInteractor(mysqlrepository.NewCategoryRepository(database.NewDB())))
-	router.GET("/api/category", conteroller.Index)
+	router.GET("/api/categories", conteroller.Index)
+	router.GET("/api/category/create", conteroller.Store)
 	//router.HandleFunc("/book/test", controllers.Test).Methods("POST")
 }

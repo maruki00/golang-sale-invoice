@@ -2,6 +2,7 @@ package controllers
 
 import (
 	interactors "saleinvoice/App/Application/Interactors"
+	"saleinvoice/App/Application/helpers"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,5 +24,8 @@ func (c *CategoryController) Index(ctx *gin.Context) {
 }
 
 func (controller *CategoryController) Store(ctx *gin.Context) {
-
+	var attributes map[string]any
+	helpers.RequestToMap(ctx.Request, &attributes)
+	ctx.JSON(200, attributes)
+	// helpers.category := factories.CategoryFactory(ctx.Request.Body)
 }
