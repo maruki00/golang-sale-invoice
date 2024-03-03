@@ -3,7 +3,7 @@ package entities
 import "time"
 
 type Category struct {
-	Id        int       `json:id`
+	Id        int       `json:id gorm: "autoIncrement"`
 	Name      string    `json:name`
 	Slug      string    `json:slug`
 	Status    string    `json:status`
