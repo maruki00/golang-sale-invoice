@@ -10,8 +10,8 @@ import (
 
 func CategoryFactory(request *http.Request) *entities.Category {
 	body, _ := io.ReadAll(request.Body)
-	var category *entities.Category
-	json.Unmarshal([]byte(body), category)
+	var category entities.Category
+	json.Unmarshal([]byte(body), &category)
 	fmt.Println("factory: ", category)
-	return category
+	return &category
 }
